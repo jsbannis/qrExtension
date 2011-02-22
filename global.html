@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>global page</title>
+ 	<script type="text/javascript">
+
+		function performCommand(event) {
+			if(event.command === "toolbarButtonCommand") {
+				var currentURL = event.target.browserWindow.activeTab.url;
+				if(currentURL) {
+					var qrURL = "http://chart.apis.google.com/chart?cht=qr&chl=http://" +
+								encodeURIComponent(currentURL) + "&chs=480x480";
+					event.target.browserWindow.openTab().url = qrURL;
+				}
+			}
+		}
+
+		function validateCommand(event) {
+			if(event.command === "toolbarButtonCommand") {
+				// Disable if no URL loaded in current tab
+				event.target.disabled = !event.target.browserWindow.activeTab.url;
+			}
+		}
+
+		safari.application.addEventListener("command", performCommand, false);
+		safari.application.addEventListener("validate", validateCommand, false);
+
+  </script>
+</head>
+<body> </body>
+</html>
