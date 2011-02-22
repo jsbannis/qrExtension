@@ -8,7 +8,7 @@
 			if(event.command === "toolbarButtonCommand") {
 				var currentURL = event.target.browserWindow.activeTab.url;
 				if(currentURL) {
-					var qrURL = "http://chart.apis.google.com/chart?cht=qr&chl=http://" +
+					var qrURL = "http://chart.apis.google.com/chart?cht=qr&chl=" +
 								encodeURIComponent(currentURL) + "&chs=480x480";
 					event.target.browserWindow.openTab().url = qrURL;
 				}
